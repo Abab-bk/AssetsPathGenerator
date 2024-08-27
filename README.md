@@ -32,7 +32,7 @@ public static class AssetPaths
 
         public static class Characters
         {
-            public static class CharactersSkeleton1
+            public static class Skeleton1
             {
                 public const string Weapon = @"res://Assets//Characters/Skeleton1/Weapon.png";
             }
@@ -83,7 +83,5 @@ public static class AssetPaths
     }
 }
 ```
-
-
 
 

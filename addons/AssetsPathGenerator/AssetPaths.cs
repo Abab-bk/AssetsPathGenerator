@@ -7,7 +7,7 @@ public static class AssetPaths
     
 		public static class Characters
 		{
-			public static class CharactersSkeleton1
+			public static class Skeleton1
 			{
 				public const string Animations = @"res://Assets//Characters/Skeleton1/Animations.scml";
 				public const string Body = @"res://Assets//Characters/Skeleton1/Body.png";
@@ -57,7 +57,7 @@ public static class AssetPaths
 
 		public static class Textures
 		{
-			public static class TexturesParticles
+			public static class _Particles
 			{
 				public const string Thunder = @"res://Assets//Textures/Particles/Thunder.png";
 				public const string Lighting_circle = @"res://Assets//Textures/Particles/lighting_circle.png";

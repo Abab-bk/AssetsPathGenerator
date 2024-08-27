@@ -31,7 +31,7 @@ public class AssetsPathGenerator(IAssetsPathHandler handler)
 
         foreach (var directory in dir.GetDirectories())
         {
-            PrintDirectoryClass(directory, 2);
+            PrintDirectoryClass(directory, 2, directory);
         }
 
         var finalCode = handler.GenerateFinalCode(_generatedCode);
@@ -47,10 +47,10 @@ public class AssetsPathGenerator(IAssetsPathHandler handler)
         GD.Print("[AssetsPathGenerator] Generated file: " + AssetsPathGeneratorConfig.GeneratedFilePath);
     }
     
-    private void PrintDirectoryClass(string dirName, int depth)
+    private void PrintDirectoryClass(string dirName, int depth, string onlyClassName)
     {
         var firstIndent = new string('\t', depth);
-        var className = handler.GenerateClassName(dirName);
+        var className = handler.GenerateClassName(onlyClassName);
         
         AppendLine($"{firstIndent}public static class {className}\n{firstIndent}{{");
 
@@ -64,15 +64,14 @@ public class AssetsPathGenerator(IAssetsPathHandler handler)
         foreach (var subDir in dir.GetDirectories())
         {
             dir.Dispose();
-            PrintDirectoryClass(dirName + "/" + subDir, depth + 1);
+            PrintDirectoryClass(dirName + "/" + subDir, depth + 1, subDir);
         }
-
         PrintContentFiles(dirName, depth + 1);
-        
+
         AppendLine( $"{firstIndent}}}\n");
     }
     
-    private void PrintContentFiles( string dirName, int depth)
+    private void PrintContentFiles(string dirName, int depth)
     {
         var dir = DirAccess.Open(GetFullPath(dirName));
         if (dir == null)
